@@ -15,6 +15,7 @@ This project relies on [Mininet](http://mininet.org), using P4's BMV2 switches.
 The topology is described in **topology.png**
 ![alt text](topology.png)
 
+Be sure to have Python3.8 installed with Scapy >= 2.4.2 (see requirements.txt).
 When ready, navigate to the cloned/downloaded folder of this project, open a shell and run:
 ```
 make run
@@ -46,7 +47,7 @@ on h3 terminal type:
 python raft_server.py 2
 ```
 
-if you want to run on all the nodes present in the topology, just edit the NODES_IPS list and run with the method described above.
+if you want to run the application on all the topology's nodes, just edit the NODES_IPS, add the IPs and run with the method described above.
 
 ## Value Consensus
 open a shell on a free node (it must not be in execution of the raft application), for example node 11 (**h11** defined in **topology.png**):
@@ -78,12 +79,13 @@ and fix the path of BMV2 and P4C
 # Known Issues
 * sometimes an exception in the new_request section inside **raft_server.py** occurs.
 I'm still investigating the causes
+* If leader already sent some recover messages and a node goes up in the middle of the operation, there could be some log inconsistency.
 
 # Warnings
 * 0 (0x0) value is not supported (yes, this is quite an annoying limitation, I will try to find a workaround)
 * not tested outside mininet
 * playing with timings defined in **raft_definitions.py** it's generally a bad idea. Everything works because of that timings.
-* <u>this version is not intended to be used in production</u>
+* <u>this version is absolutely not intended to be used in production</u>
 
 * **With Python2.7 only the leader election works, not the log replication, maybe due to thread concurrency.**
 * If you use Python2.7, quit the application with CTRL+/. CTRL+C didn't work for me.
