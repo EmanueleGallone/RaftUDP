@@ -7,7 +7,7 @@ uses UDP segments, crafted using Scapy 2.4.2 (see references).
 This implementation provides the following features:
 * leader election
 * log replication
-* node recovering after failures either of a leader node or a non-leader node (contemporary failures must not exceed the majority of nodes, as explained in Raft)
+* node recovering after failures either of a leader node or a non-leader node (simultaneous failures must not exceed, in number, the majority of nodes, as explained in Raft)
 # Getting started
 download and run the VM of [P4lang](https://www.github.com/p4lang/tutorials) (it's the fastest way to get a working environment).
 
